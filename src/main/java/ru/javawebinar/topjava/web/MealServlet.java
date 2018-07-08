@@ -19,7 +19,7 @@ public class MealServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.info("show 'getAll' meals");
         req.setAttribute("mealsList", UserMealsUtil.getWithExceeded(UserMealsUtil.USER_MEALS,2000));
-        req.getRequestDispatcher("/show_meals").forward(req,resp);
+        req.getRequestDispatcher("/show_meals.jsp").forward(req,resp);
     }
 
     @Override

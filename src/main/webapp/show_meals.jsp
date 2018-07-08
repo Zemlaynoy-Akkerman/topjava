@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Title</title>
@@ -24,10 +25,14 @@
         </tr>
 
         <c:forEach var="mealWithExceed" items="${mealsList}">
-            <tr <c:if test="${mealWithExceed.isExceed()}"> style="color: red" </c:if>>
-                <th>${mealWithExceed.getDateTime()}</th>
-                <th>${mealWithExceed.getDescription()}</th>
-                <th>${mealWithExceed.getCalories()}</th>
+            <jsp:useBean id="mealWithExceed" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
+            <tr <c:if test="${mealWithExceed.exceed}"> style="color: red" </c:if>>
+                <th>
+                    <fmt:parseDate value="${mealWithExceed.dateTime}" pattern="y-M-dd'T'H:m" var="parseDate"/>
+                    <fmt:formatDate value="${parseDate}" pattern="yyyy.MM.dd HH:mm" />
+                </th>
+                <th>${mealWithExceed.description}</th>
+                <th>${mealWithExceed.calories}</th>
             </tr>
         </c:forEach>
 
