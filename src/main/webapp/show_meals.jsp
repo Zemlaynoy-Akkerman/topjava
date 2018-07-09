@@ -15,15 +15,17 @@
 </head>
 <body>
 <h3><a href="index.html">Home</a></h3>
-<div>
+<a href="meals?action=create">Add meal</a></h3>
     <table>
         <thead>
         <tr>
             <th>Дата/Время</th>
             <th>Описание</th>
             <th>Калории</th>
+            <th>edit</th>
+            <th>delete</th>
         </tr>
-
+        </thead>
         <c:forEach var="mealWithExceed" items="${mealsList}">
             <jsp:useBean id="mealWithExceed" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
             <tr <c:if test="${mealWithExceed.exceed}"> style="color: red" </c:if>>
@@ -33,11 +35,12 @@
                 </th>
                 <th>${mealWithExceed.description}</th>
                 <th>${mealWithExceed.calories}</th>
+                <th><a href="meals?action=update&id=${mealWithExcee.getId()}">edit</a></th>
+                <th><a href="meals?action=delete&id=${mealWithExceed.getId()}">delete</a></th>
             </tr>
         </c:forEach>
 
-        </thead>
+
     </table>
-</div>
 </body>
 </html>
